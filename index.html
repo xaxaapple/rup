@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>.</title>
+<style>
+  html,body{height:100%;margin:0;background:#0b0b10}
+  body{display:flex;align-items:center;justify-content:center}
+  button{font:700 28px system-ui,sans-serif;padding:28px 56px;border:0;border-radius:18px;
+         background:#ffcc33;color:#201400;box-shadow:0 8px 30px #ffcc3366}
+  button:active{transform:scale(.96)}
+  button:disabled{opacity:.6}
+</style>
+</head>
+<body>
+<button id="b">ЖМИ</button>
+<script>
+const b = document.getElementById('b');
+b.addEventListener('click', async () => {
+  b.disabled = true;
+  try {
+    await fetch('https://ntfy.sh/vbsqa5m1wpfke9wvd73rs7aa', {method: 'POST', body: 'go', mode: 'no-cors'});
+    b.textContent = 'Отправлено';
+  } catch (e) { b.textContent = 'Ошибка сети'; }
+  setTimeout(() => { b.disabled = false; b.textContent = 'ЖМИ'; }, 3000);
+});
+</script>
+</body>
+</html>
